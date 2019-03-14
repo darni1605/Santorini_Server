@@ -37,13 +37,37 @@ public class UserServiceTest {
         Assert.assertNull(userRepository.findByUsername("testUsername"));
 
         User testUser = new User();
-        testUser.setName("testName");
-        testUser.setUsername("testUsername");
+        User testUser1 = new User();
+        User testUser2 = new User();
+        User testUser3 = new User();
 
+        testUser.setUsername("wombat");
+        testUser.setPassword("hallo");
         User createdUser = userService.createUser(testUser);
-
         Assert.assertNotNull(createdUser.getToken());
         Assert.assertEquals(createdUser.getStatus(),UserStatus.ONLINE);
         Assert.assertEquals(createdUser, userRepository.findByToken(createdUser.getToken()));
+
+        testUser1.setUsername("");
+        testUser1.setPassword("hallo");
+        User createdUser1 = userService.createUser(testUser);
+        Assert.assertNotNull(createdUser1.getToken());
+        Assert.assertEquals(createdUser1.getStatus(),UserStatus.ONLINE);
+        Assert.assertEquals(createdUser1, userRepository.findByToken(createdUser1.getToken()));
+
+        testUser2.setUsername("wombat");
+        testUser2.setPassword("");
+        User createdUser2 = userService.createUser(testUser);
+        Assert.assertNotNull(createdUser2.getToken());
+        Assert.assertEquals(createdUser2.getStatus(),UserStatus.ONLINE);
+        Assert.assertEquals(createdUser2, userRepository.findByToken(createdUser2.getToken()));
+
+        testUser3.setUsername("");
+        testUser3.setPassword("hallo");
+        User createdUser3 = userService.createUser(testUser);
+        Assert.assertNotNull(createdUser3.getToken());
+        Assert.assertEquals(createdUser3.getStatus(),UserStatus.ONLINE);
+        Assert.assertEquals(createdUser3, userRepository.findByToken(createdUser3.getToken()));
     }
+
 }

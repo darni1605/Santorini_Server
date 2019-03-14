@@ -11,25 +11,31 @@ import javax.persistence.Id;
 
 @Entity
 public class User implements Serializable {
-	
+
 
 	private static final long serialVersionUID = 1L;
-
+	// generate all need variables and their get/set methods //
 	@Id
 	@GeneratedValue
 	private Long id;
-	
-	@Column(nullable = false) 
-	private String name;
-	
-	@Column(nullable = false, unique = true) 
+
+	@Column(nullable = false)
+	private String password;
+
+	@Column(nullable = false, unique = true)
 	private String username;
-	
-	@Column(nullable = false, unique = true) 
+
+	@Column(nullable = false, unique = true)
 	private String token;
 
 	@Column(nullable = false)
 	private UserStatus status;
+
+	@Column(nullable = false)
+	private String date;
+
+	@Column(nullable = false)
+	private String birthday;
 
 	public Long getId() {
 		return id;
@@ -39,12 +45,20 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getDate() {
+		return date;
 	}
 
 	public String getUsername() {
@@ -71,6 +85,14 @@ public class User implements Serializable {
 		this.status = status;
 	}
 
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+
+	public String getBirthday() {
+		return this.birthday;
+	}
+	// method to check equality //
 	@Override
 	public boolean equals(Object o) {
 		if (o == this) return true;
